@@ -1,13 +1,42 @@
+d3j
+===
+
+_Shorthand for creating data driven documents, inforgraphics and the like - fast._
+
+Introduction
+------------
+
+[D3](http://d3js.org/) is a javascript library for manipulating documents based on data. 
+Combined with css, __html__ and __svg__ it can be used to create stunning visualisations based on data and animated with transitions as the data changes...
+
+[Jade](http://jade-lang.com/) is a javascript tempting engine that produces XML documents like __html__ and __svg__...
+
+Hold on! They have so much in common... They should get together!!
+
+[d3j](https://github.com/aogriffiths/d3j/) The marriage of the two.
+
+Background & Why?!
+------------------
+
+Ok, before you find out more about this beautiful union you need to know some basics. Have you used the following things?
+
+* html, svg - the final result of using d3, jade or d3j is going to be one of, or a combination of these.
+* css - not just for styling your html and svg but d3 makes heavy use of css selectors.
+* jade - for tempting
+* javascript - programming for the browser
+* d3 - the javascript library that inspired all of this
+
+css
 
 
-d3j syntax
-========== 
+Syntax
+------
 A d3j template follows these rules:
 
 
 
-File syntax
------------
+### File syntax
+
 
 *   It __MAY__ mix javascript and "d3jade" syntax interchangeably.
 
@@ -32,38 +61,29 @@ File syntax
 
 
 | A   |  B  |
-|-----|-----|
+|:---:|:---:|
 | <   |  >  |
 | (   |  )  |
 | {   |  }  |
 | [   |  ]  |
 | <<  |  >> |
-| ]}- | -{[ |
+| ]=- | -=[ |
+|  A  |  A  |
+| abc | cba |
 
 
-
-| Tables        | Are           | Cool  |
-| ------------- |:-------------:| -----:|
-| col 3 is      | right-aligned | $1600 |
-| col 2 is      | centered      |   $12 |
-| zebra stripes | are neat      |    $1 |
-
-
-
-*   A valide jade string __MUST__ follow the `OPEN` string.
+*   A valide jade string __MUST__ follow the `OPEN` string. d3jade supports a subset of jade (see "supported jade" below for details).
 
         ^START + OPEN + WHITESPACE + JADE
         e.g:
         //> p.myclass Text
 
-*   d3jade supports a subset of jade (see "supported jade" below for details).
-
-*   The `CLOSE` string __MAY__ be used one time on the d3j line or not at all. If it used 
+*   The `CLOSE` string __MAY__ be used  adter the jade string. If it used 
     it must be followed by a d3j command  (see "d3j commands" below for details).
 
         ^START + OPEN + WHITESPACE + JADE + CLOSE + COMMAND
         e.g:
-        //> p.myclass Text < all(d)
+        //> p.myclass Text < command(d)
 
 *   Any line that does not much the criteria of a d3j line will be treated as a javascript
     line. Practically this means it can start with any characters, including the `START`
@@ -71,10 +91,10 @@ File syntax
 
 ### Example
 
-The requsit hello world example. Here there are three lines of d3jade, wrapped by two lines of javascript.
+Here is the requsit hello world example. Three lines of d3jade, wrapped by two lines of javascript. Once compiled this would result in a function called sayhello, which would use d3 to ensure a paragraph withthe Hellow Word text was situated in the body of the html page.
 
 ```javascript
-    function(test){
+    function sayhello(){
 //>   html
 //>     body
 //>       p Hello world!
