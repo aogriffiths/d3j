@@ -144,7 +144,7 @@ A d3j template follows these rules:
     line. Practically this means it can start with any characters, including the `START`
     string as long as it is directly followed by white space.
 
-### Example
+#### Example
 
 Here is the requsit hello world example.
 
@@ -159,8 +159,7 @@ Here is the requsit hello world example.
 There are three lines of d3jade, wrapped by two lines of javascript. Once compiled this will produce a function called sayhello, which will ensure a paragraph with the text "Hello Word!" is situated in a paragraph tag in the body of the html page.
 
 
-D3j line syntax
----------------
+### D3j line syntax
 
 As mentioned above a d3j line starts with:
 
