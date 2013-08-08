@@ -178,7 +178,7 @@ As with jade, white space at the start of a line is significant. More accurately
     "^" + START + "\w+\s*"
 
 The INDENT of first d3j line sets the minimum intent for all other d3j lines.
-Practically this just means the jade like syntax needs to be visually "lined up" and look right. For example the following lines use different ESCAPE strings but are considered to have the same INDENT:
+Practically this just means the jade like syntax needs to be visually "lined up" and look right. For example the following lines use different `OPEN` strings but are considered to have the same __INDENT__:
 
     //>   div.one
     //:=~ div.two
