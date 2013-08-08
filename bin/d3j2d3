@@ -1,0 +1,76 @@
+#!/usr/bin/env node
+
+process.stdin.resume();
+process.stdin.setEncoding("utf8");
+
+alldate = [];
+
+process.stdin.on("data", function(chunk){
+  alldate.push(translate(chunk));
+});
+
+process.stdin.on("end", function(){
+  process.stdout.write(alldate.join("\n"));
+});
+
+var trimLength = null;
+
+function translate(line){
+  var firstChar = line..substr(0,1);
+  switch (firstChar) {
+    case ':':
+      var split = (/:(\w+)(.*)/).exec(line);
+      var cmd   = split[1];
+      if(trimLength == null){
+        var restofline = split[2];
+        var space  = (/\s*/).exec(restofline)[1];
+        trimLength = cmd.length + space.length;    
+      }
+      var arg = 
+
+      break;
+    case default:
+
+      break;
+  }
+}
+
+/*
+
+var regexp1 =  /^START(\S+)(\s*)(.*)$/
+var open = match[1];
+var close = mirror(open);
+var part2 = match[3];
+var regexp1 =  part2.split(close);
+
+*/
+
+function mirror(txt){
+  var chars = txt.split("");  
+  var char = chars.pop();
+  var out = [];
+  
+  while(char != undefined){
+    out.push(flip(char));
+    var char = chars.pop();
+  }
+  return out.join("");
+}
+
+function flip(char){
+  switch (char){
+    case ">": return "<";
+    case "<": return ">";
+    case "(": return ")";
+    case ")": return "(";
+    case "{": return "}";
+    case "}": return "{";
+    case "[": return "]";
+    case "]": return "[";
+  }
+  return char;
+}
+
+RegExp.escape = function( value ) {
+     return value.replace(/[\-\[\]{}()*+?.,\\\^$|#\s]/g, "\\$&");
+}

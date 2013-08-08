@@ -1,0 +1,31 @@
+{
+  "name": "d3j",
+  "description": "d3 using jade syntax",
+  "keywords": ["d3","jade"],
+  "version": "0.0.2",
+  "main":"./lib/d3j.js",
+  "engines": {
+    "node": "*"
+  },
+  "author": {
+    "name": "Adam Griffiths",
+    "url": "https://github.com/aogriffiths"
+  },
+  "homepage": "https://github.com/aogriffiths/d3j",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/aogriffiths/d3j"
+  },
+  "bin": {
+    "jade2d3j": "./bin/jade2d3j"
+  },
+  "scripts": {
+    "test": "nodeunit tests/server/tests.js",
+    "testbrowser": "open tests/browser/tests.html"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "nodeunit": ">= 0.6.4"
+  },
+  "optionalDependencies": {}
+}

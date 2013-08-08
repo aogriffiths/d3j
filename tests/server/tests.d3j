@@ -1,0 +1,11 @@
+function renderParas(d){
+:single html
+:single   head
+:all        p.x #{d}
+                .data (d)
+                .text ()
+                .text (function(d){return d})
+                .sda ()
+                .attr ("id", function(d){return d})
+:single     p cool
+}

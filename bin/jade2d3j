@@ -1,0 +1,50 @@
+#!/usr/bin/env node
+
+process.stdin.resume();
+process.stdin.setEncoding("utf8");
+
+alldate = [];
+
+process.stdin.on("data", function(chunk){
+  alldate.push(translate(chunk));
+});
+
+process.stdin.on("end", function(){
+  process.stdout.write(alldate.join("\n"));
+});
+
+function translate(line){
+  return '.e("' + line + '")'
+}
+
+/*
+
+var scripts = module.exports.scripts = {};
+
+scripts.default = function(d3jsel){  
+  d3j
+    .e("html")  
+    .e("  head")
+    .e("    p")
+    .d(      [1,2,3])
+    .t(      funcion(d){return d})
+    .a(      "id", funcion(d){return d})
+    .e("    p")
+  ;
+}
+
+*/
+d3j.compile(scriptS){
+  compilingSel = new CompilingSection();
+  scriptS(compilingSel);
+  return compilingSel.compiledFunction();
+}
+
+/*
+//EXAMPLES
+//compile a map of scripts, e.g. name:function(d3jsel){};
+d3j.compile(scripts);          
+
+//compile a single script. e.g. function(d3jsel){};
+d3j.compile(scripts.default);  
+*/

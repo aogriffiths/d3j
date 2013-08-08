@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <title>d3j In Browser Test Suite</title>
+    <link rel="stylesheet" href="nodeunit.css" type="text/css" />
+    <script src="nodeunit.js"></script>
+    <!-- jade, d3, d3j -->
+    
+    <script src="suite1.js"></script>
+    <script src="suite2.js"></script>
+    <script src="suite3.js"></script>
+  </head>
+  <body>
+    <h1 id="nodeunit-header">d3j In Browser Test Suite</h1>
+    <script>
+      nodeunit.run({
+        'suite1': suite1,
+        'suite2': suite2,
+        'suite3': suite3
+      });
+    </script>
+  </body>
+</html>
