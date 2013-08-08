@@ -9,7 +9,7 @@ Introduction
 [D3](http://d3js.org/) is a javascript library for manipulating documents based on data. 
 Combined with css, __html__ and __svg__ it can be used to create stunning visualisations based on data and animated with transitions as the data changes...
 
-[Jade](http://jade-lang.com/) is a javascript tempting engine that produces XML documents like __html__ and __svg__...
+[Jade](http://jade-lang.com/) is a javascript tempting engine that produces XML documents like __html__ and __svg__.
 
 Hold on! They have so much in common... They should get together!!
 
@@ -20,14 +20,67 @@ Background & Why?!
 
 Ok, before you find out more about this beautiful union you need to know some basics. Have you used the following things?
 
-* html, svg - the final result of using d3, jade or d3j is going to be one of, or a combination of these.
-* css - not just for styling your html and svg but d3 makes heavy use of css selectors.
-* jade - for tempting
-* javascript - programming for the browser
-* d3 - the javascript library that inspired all of this
+* __html__, __svg__ - the final result of using d3, jade or d3j is going to be one of, or a combination of these.
+* __css__ - not just for styling your html and svg but d3 also makes heavy use of css selectors.
+* __d3__ - the javascript library that inspired all of this.
 
-css
+If you have, you may have found the code you wrote got a bit long winded or repetitive. Doing a `selectAll("div.myclass")` followed by a `enter().append("div").classed("myclass", true)` for example. Why do you have to say its a `div.myclass` you want twice? And in two different ways?
 
+d3j is a Domain Specific Language (DSL) that aims to offer all the power of d3 without you needing to write so much code. It is also designed to be very readable - you should be able to look at a d3j document and easily see the kind of html or svg it's going to produce. 
+
+If you have never used either d3 or jade you might mind this a steep learning curve. Seriously, do a tutorial on both before you you read any future.
+
+Here's an example:
+
+In d3j:
+```javascript
+    function sayhello(data){
+//>   html
+//>     body
+//>       h1 Hello...
+//>       p #{i}. #{d}! < all(data)
+    }
+```
+
+In d3:
+```javascript
+    function sayhello(data){
+      var html = d3.select("html");
+      var body = html.select("body");
+      if(body.empty()){
+        body = html.append("body");
+      }
+      var h1 = body.select("h1");
+      if(h1.empty()){
+        h1 = body.append("h1");
+      }
+      h1.text("Hello...");
+      body.selectAll("p")
+        .data(data)
+        .enter()
+        .append("p")
+        .text(function(d,i){return i + ". " + d});
+    }
+```
+(this is roughly the script the d3j above compiles to)
+
+The just call this in your browser:
+```javascript
+sayhello(["Mathew","Mark","Luke","John"]);
+```
+
+And you will get:
+```html
+<html>
+  <body>
+    <h1>Hello...</h1>
+    <p>0. Mathew</p>
+    <p>1. Mark</p>
+    <p>2. Luke</p>
+    <p>3. John</p>
+  </body>
+</html>
+```
 
 Syntax
 ------
