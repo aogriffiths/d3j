@@ -24,15 +24,16 @@ Ok, before you find out more about this beautiful union you need to know some ba
 * __css__ - not just for styling your html and svg but d3 also makes heavy use of css selectors.
 * __d3__ - the javascript library that inspired all of this.
 
-If you have, you may have found the code you wrote got a bit long winded or repetitive. Doing a `selectAll("div.myclass")` followed by a `enter().append("div").classed("myclass", true)` for example. Why do you have to say its a `div.myclass` you want twice? And in two different ways?
+If you have, you may have found the code you wrote got a bit long winded or repetitive. Doing a `selectAll("div.myclass")` followed by a `enter().append("div").classed("myclass", true)` for example. Why do you have to say its a `div.myclass` you want twice? And in two different ways? (There are good reasons but d3j will save you the trouble.)
 
-d3j is a Domain Specific Language (DSL) that aims to offer all the power of d3 without you needing to write so much code. It is also designed to be very readable - you should be able to look at a d3j document and easily see the kind of html or svg it's going to produce. 
+d3j is a Domain Specific Language (DSL) that aims to offer all the power of d3 without you needing to write so much code. It is also designed to be very readable; you should be able to look at a d3j document and easily see the kind of html or svg it's going to produce. It also compiles into pure javascript, only dependant on the d3.js libabry inthe browser, so there is no need to include any more scripts libraries in your page.
 
-If you have never used either d3 or jade you might mind this a steep learning curve. Seriously, do a tutorial on both before you you read any future.
+If you have never used either d3 or jade you might mind this a steep learning curve. I highly recommend doing a tutorial and playing with both before you start using d3j.
 
-Here's an example:
+An Example
+----------
 
-In d3j:
+In d3j you can write:
 ```javascript
     function sayhello(data){
 //>   html
@@ -42,7 +43,7 @@ In d3j:
     }
 ```
 
-In d3:
+In d3 you would write the same function as:
 ```javascript
     function sayhello(data){
       var html = d3.select("html");
@@ -62,9 +63,8 @@ In d3:
         .text(function(d,i){return i + ". " + d});
     }
 ```
-(this is roughly the script the d3j above compiles to)
 
-The just call this in your browser:
+In your browser you call:
 ```javascript
 sayhello(["Mathew","Mark","Luke","John"]);
 ```
@@ -85,7 +85,6 @@ And you will get:
 Syntax
 ------
 A d3j template follows these rules:
-
 
 
 ### File syntax
