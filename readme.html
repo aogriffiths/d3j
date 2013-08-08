@@ -1,37 +1,87 @@
-<p>A d3j template file has a valid base syntax if it meets the following rules:</p>
+<h1>d3j syntax</h1>
+<p>A d3j template follows these rules:</p>
+<h2>File syntax</h2>
 <ul>
-<li>It MAY use normal javascript and a jade style syntax, referred to as &quot;d3j&quot;, interchangeably.</li>
-<li>The d3j syntax and javascript MUST be kept on separate lines.</li>
-<li><p>A d3j line MUST start with the d3j line START string (default is //) followed by an ESCAPE START string (default is &gt;) followed by white space e.g:
-//&gt;
-or the regexp:
-&quot;^&quot; + START + &quot;\w+&quot;</p>
+<li><p>It <strong>MAY</strong> mix javascript and &quot;d3j&quot; syntax interchangeably.</p>
 </li>
-<li><p>The START string is set at compile time and MUST be the same throughout the file.</p>
+<li><p>d3j is a subset of the jade syntax so it <strong>MUST</strong> adhere to the jade syntax rules. (see below for the parts of jade that are and are not supported).</p>
 </li>
-<li>The ESCAPE START string MAY be different on each line. However, for readability, keeping it consistent across a file is recommended.</li>
-<li>The ESCAPE string MAY be used one time on the remaining d3j line or not at all. The ESCAPE string is based on the ESCAPE START string and in most cases it is identical, except for parenthesis type char taters. The following table shows ESCAPE START string and their related ESCAPE strings:</li>
+<li><p>The d3j syntax and javascript MUST be kept on separate lines.</p>
+</li>
+<li><p>A d3j line <strong>MUST</strong> start with a <code>START</code> string (default is <code>//</code>) followed by an 
+<code>OPEN</code> string (default is <code>&gt;</code>) followed by white space.</p>
+<pre><code>^START + OPEN + WHITESPACE
+e.g:
+//&gt;</code></pre>
+</li>
+<li><p>The <code>START</code> string is set at compile time and <strong>MUST</strong> be the same throughout the file.</p>
+</li>
+<li><p>The <code>OPEN</code> string <strong>MAY</strong> be different on each line. However, for readability, keeping 
+it consistent across a file is recommended.</p>
+</li>
+<li><p>The <code>OPEN</code> string is &quot;mirrored&quot; to give a <code>CLOSE</code> string. Mirroring is best explained 
+with the examples in the following table (A is a mirror of B and B is a mirror of A):</p>
+</li>
 </ul>
-<p>( )
-) (</p>
-<blockquote>
-<p>&lt;
-&lt; &gt;
-{ }
-} {
-[ ]
-] [
-<em> </em></p>
-</blockquote>
+<table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&lt;</td>
+<td>&gt;</td>
+</tr>
+<tr>
+<td>(</td>
+<td>)</td>
+</tr>
+<tr>
+<td>{</td>
+<td>}</td>
+</tr>
+<tr>
+<td>[</td>
+<td>]</td>
+</tr>
+<tr>
+<td>&lt;&lt;</td>
+<td>&gt;&gt;</td>
+</tr>
+<tr>
+<td>]}-</td>
+<td>-{[</td>
+</tr>
+</tbody>
+</table>
 <ul>
-<li>Any line that does not much the criteria of a d3j line will be treated as a javascript line. Practically this means it can start with any characters, including the START string directly followed by white space.</li>
+<li><p>The <code>CLOSE</code> string <strong>MAY</strong> be used one time on the remaining d3j line or not at all. </p>
+</li>
+<li><p>Any line that does not much the criteria of a d3j line will be treated as a javascript
+line. Practically this means it can start with any characters, including the <code>START</code>
+string as long as it is directly followed by white space.</p>
+</li>
 </ul>
-<p>This is the base syntax. There are a number of future language rules that MUST be followed for a d3j file to compile and execute as expected.</p>
-<p>As explained above a d3j line starts with:</p>
-<p>START + ESCAPE + WHITESPACE</p>
-<p>E.g.</p>
-<p>//&gt;</p>
-<p>It&#39;s should then follow with a valid jade string and optionally the escape string followed by a a valid d3j command. E.g.</p>
+<h3>Examples</h3>
+<pre><code class="lang-js">    function(test){
+//&gt;   html
+//&gt;     body
+      if(test){
+//&gt;       p True!
+      }else{
+//&gt;       p Not true!      
+      }
+    }</code></pre>
+<p>This is the base syntax. There are a number of future language rules that MUST be followed for a d3j line</p>
+<h2>D3j line syntax</h2>
+<p>As mentioned above a d3j line starts with:</p>
+<pre><code>^START + OPEN + WHITESPACE</code></pre>
+<p>For example:</p>
+<pre><code>//&gt; </code></pre>
+<p>A valid jade string should follow  optionally the escape string followed by a a valid d3j command. E.g.</p>
 <p>START + ESCAPE + WHITESPACE + JADE [ + ESCAPE + COMMAND ]</p>
 <p>E.g.</p>
 <p>//&gt; h1.myclass#id  #{i}. #{d} &lt;forall(data)</p>

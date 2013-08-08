@@ -1,39 +1,101 @@
-A d3j template file has a valid base syntax if it meets the following rules:
 
-* It MAY use normal javascript and a jade style syntax, referred to as "d3j", interchangeably.
-* The d3j syntax and javascript MUST be kept on separate lines.
-* A d3j line MUST start with the d3j line START string (default is //) followed by an ESCAPE START string (default is >) followed by white space e.g:
-//>
-or the regexp:
-"^" + START + "\w+"
 
-* The START string is set at compile time and MUST be the same throughout the file.
-* The ESCAPE START string MAY be different on each line. However, for readability, keeping it consistent across a file is recommended.
-* The ESCAPE string MAY be used one time on the remaining d3j line or not at all. The ESCAPE string is based on the ESCAPE START string and in most cases it is identical, except for parenthesis type char taters. The following table shows ESCAPE START string and their related ESCAPE strings:
+d3j syntax
+========== 
+A d3j template follows these rules:
 
-( )
-) (
-> <
-< >
-{ }
-} {
-[ ]
-] [
-* *
 
-* Any line that does not much the criteria of a d3j line will be treated as a javascript line. Practically this means it can start with any characters, including the START string directly followed by white space.
 
-This is the base syntax. There are a number of future language rules that MUST be followed for a d3j file to compile and execute as expected.
+File syntax
+-----------
 
-As explained above a d3j line starts with:
+*   It __MAY__ mix javascript and "d3jade" syntax interchangeably.
 
-START + ESCAPE + WHITESPACE
+*   The d3jade syntax and javascript __MUST__ be kept on separate lines.
 
-E.g.
+*   A d3jade line __MUST__ start with a `START` string (default is `//`) followed by an 
+    `OPEN` string (default is `>`) followed by white space.
 
-//>
+        ^START + OPEN + WHITESPACE
+        e.g:
+        //>
 
-It's should then follow with a valid jade string and optionally the escape string followed by a a valid d3j command. E.g.
+*   The `START` string is set at compile time and __MUST__ be the same throughout the 
+    file.
+
+*   The `OPEN` string __MAY__ be different on each line. However, for readability,
+    keeping it consistent across a file is recommended.
+
+*   The `OPEN` string is "mirrored" to give a `CLOSE` string. Mirroring is best explained 
+    with the examples in the following table (A is a mirror of B and B is a mirror of A):
+
+
+
+| A   |  B  |
+|-----|-----|
+| <   |  >  |
+| (   |  )  |
+| {   |  }  |
+| [   |  ]  |
+| <<  |  >> |
+| ]}- | -{[ |
+
+
+
+| Tables        | Are           | Cool  |
+| ------------- |:-------------:| -----:|
+| col 3 is      | right-aligned | $1600 |
+| col 2 is      | centered      |   $12 |
+| zebra stripes | are neat      |    $1 |
+
+
+
+*   A valide jade string __MUST__ follow the `OPEN` string.
+
+        ^START + OPEN + WHITESPACE + JADE
+        e.g:
+        //> p.myclass Text
+
+*   d3jade supports a subset of jade (see "supported jade" below for details).
+
+*   The `CLOSE` string __MAY__ be used one time on the d3j line or not at all. If it used 
+    it must be followed by a d3j command  (see "d3j commands" below for details).
+
+        ^START + OPEN + WHITESPACE + JADE + CLOSE + COMMAND
+        e.g:
+        //> p.myclass Text < all(d)
+
+*   Any line that does not much the criteria of a d3j line will be treated as a javascript
+    line. Practically this means it can start with any characters, including the `START`
+    string as long as it is directly followed by white space.
+
+### Example
+
+The requsit hello world example. Here there are three lines of d3jade, wrapped by two lines of javascript.
+
+```javascript
+    function(test){
+//>   html
+//>     body
+//>       p Hello world!
+    }
+```
+
+This is the base syntax, but you will need to know some more to make it useful. Read on...
+
+
+D3j line syntax
+---------------
+
+As mentioned above a d3j line starts with:
+
+    ^START + OPEN + WHITESPACE
+
+For example:
+
+    //> 
+
+A valid jade string should follow  optionally the escape string followed by a a valid d3j command. E.g.
 
 START + ESCAPE + WHITESPACE + JADE [ + ESCAPE + COMMAND ]
 
